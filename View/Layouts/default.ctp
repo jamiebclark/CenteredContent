@@ -41,7 +41,9 @@ $this->Html->css('CenteredContent.style', null, ['inline' => false]);
 	<div class="<?php echo $contentPanelClass; ?>">
 		<?php if (!empty($contentHeading)): ?>
 			<div class="panel-heading">
-				<?php echo $contentHeading; ?>
+				<div class="panel-title">
+					<?php echo $contentHeading; ?>
+				</div>
 			</div>
 		<?php endif; ?>
 
