@@ -2,20 +2,21 @@
 $this->extend('CenteredContent.default');
 
 $default = [
-	'hasSubmit' => true,
-	'submitText' => 'Submit',
-	'formAdd' => false,
+	'hasForm' => true,				// Whether to wrap the layout in a form tag
+	'hasSubmit' => true,			// Whether to include a submit button
+	'submitText' => 'Submit',		// The text of the submit button
+	'formAdd' => false,				// If the form is adding or updating
 
-	'backUrl' => false,
-	'backText' => 'Back',
-	'backIcon' => '<i class="fa fa-arrow-left"></i>',
+	'backUrl' => false,				// The url the back button should redirect to
+	'backText' => 'Back',			// The text of the back button
+	'backIcon' => '<i class="fa fa-arrow-left"></i>',	// THe icon of the back button
 
-	'submitUrl' => false,
-	'submitText' => 'Next',
-	'submitIcon' => '<i class="fa fa-check"></i>',
+	'submitUrl' => false,			// Will create a link instead of a button in the submit section
+	'submitText' => 'Next',			// The text of the submit button
+	'submitIcon' => '<i class="fa fa-check"></i>',	// THe icon of the submit button
 
-	'formOptions' => [],
-	'submittedOverlay' => true,
+	'formOptions' => [],			// Additional form options
+	'submittedOverlay' => true,		// Whether or not to include the "Loading..." overlay when submitting
 ];
 
 if (!empty($this->Form->defaultModel)) {
@@ -88,7 +89,9 @@ if (!empty($footer)) {
 	$this->append('contentFooter', $this->Html->div($footerClass, $footer));
 }
 
-$this->append('beforeContent', $this->Form->create(null, $formOptions));
-$this->append('afterContent', $this->Form->end());
+if ($hasForm) {
+	$this->append('beforeContent', $this->Form->create(null, $formOptions));
+	$this->append('afterContent', $this->Form->end());
+}
 
 echo $this->fetch('content');
